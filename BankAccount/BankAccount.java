@@ -7,16 +7,15 @@ import java.util.Scanner;
 
 public class BankAccount {
     final String owner;
-    final private int number;
+    final private int id;
     private double credit;
     private static int accountCount = 0;
     Reader reader = new Reader();
 
     public BankAccount(String name) {
-        this.number = ++BankAccount.accountCount;
+        this.id = ++BankAccount.accountCount;
         this.credit = 0;
         this.owner = name;
-//        Scanner scanner;
     }
 
     public double getCredit() {
@@ -28,8 +27,8 @@ public class BankAccount {
         this.credit = credit;
     }
 
-    public int getNumber() {
-        return this.number;
+    public int getId() {
+        return this.id;
     }
 
     public static int getAccountCount() {
@@ -47,10 +46,11 @@ public class BankAccount {
     }
 
     public double withdrawal() {
-        System.out.println("enter the amount of money you want to withdrawal \n");
+        System.out.println("entrez le montant que vous voulez retirer \n");
         double amount = reader.getDouble();
         if (amount < 0 || this.credit < amount) return 0;
-        return this.addToCredit(-amount).credit;
+        this.addToCredit(-amount);
+        return amount;
 
     }
 
@@ -65,17 +65,35 @@ public class BankAccount {
     }
 
     public void deposit() {
-        System.out.println("enter the amount of money you want to deposit \n");
+        System.out.println("entrez le montant que vous voulez déposer \n");
         double amount = reader.getDouble();
         if (amount < 0) return;
         this.addToCredit(amount);
     }
 
+    public boolean sendMoney(BankAccount b1, double amount) {
+        if (this.credit < amount)return false;
+        this.withdrawal(amount);
+        b1.deposit(amount);
+        return true;
+    }
+
+    public boolean sendMoney() {
+        System.out.println("Entrez le montant que vous voulez envoyer. \n");
+        double amount = reader.getDouble();
+        System.out.println("Entrez l’ID du destinataire \n");
+        int receiverId = reader.getInteger();
+        if (this.credit < amount) return false;
+        this.withdrawal(amount);
+        return true;
+        //        BankAccount b=getAccountByid(id);
+        //        it should bring user account from the accounts and desposit from it
+        //        receiver.deposit(amount);
+    }
+
     public void accountMenu() {
-
-
         while (true) {
-            System.out.println("Please choose one of the options : 1:deposit 2:withdrawal  3:check 4:exit");
+            System.out.println("Veuillez choisir l’une des options: \n 1:verser 2:retirer  3:consulter 4:virer 5:quitter");
             int choice = reader.getInteger();
 //        System.out.println(choice);
             switch (choice) {
@@ -83,25 +101,32 @@ public class BankAccount {
                     this.deposit();
                     break;
                 case 2:
-                    this.withdrawal();
+                    System.out.println("vous avez" + this.withdrawal() + "$ ");
                     break;
                 case 3:
                     System.out.println(this.toString());
                     break;
                 case 4:
+                    if (this.sendMoney()) {
+                        System.out.println("réussite des transactions");
+                    } else {
+                        System.out.println("transaction refusée");
+                    }
+                    break;
+                case 5:
                     return;
                 default:
-                    System.out.println("your choice doesn't exists");
+                    System.out.println("votre choix n’existe pas");
             }
         }
     }
 
     @Override
     public String toString() {
-        return "BankAccount{" +
-                "owner='" + owner + '\'' + " " +
-                "number='" + number + '\'' + " " +
-                "credit='" + credit + '\'' + " " +
+        return "compte bancaire{" +
+                "propriétaire='" + owner + '\'' + " " +
+                "id='" + id + '\'' + " " +
+                "credit='" + credit + '\'' + " $ " +
                 '}';
     }
 }
