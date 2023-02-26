@@ -9,8 +9,10 @@ public class Main {
                 bmce.createAccount("hamid");
                 bmce.createAccount("khalid");
                 // get a user account by his name
-                BankAccount adamAccount = (BankAccount) bmce.getBankAccountByName("adam");
-                System.out.println(adamAccount.getId());
+                // BankAccount adamAccount = (BankAccount) bmce.getBankAccountByName("adam");
+                // BankAccount hamid = (BankAccount) bmce.getBankAccountById(3);
+                bmce.BankMenu();
+                // System.out.println(adamAccount.getId());
 
                 // adamJemmyAccount.accountMenu();
                 // BankAccount adamAccount = (BankAccount) bmce.getBankAccountByName("adam");

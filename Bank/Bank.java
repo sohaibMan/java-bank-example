@@ -126,7 +126,7 @@ public class Bank {
                     System.out.println(this.getBankAccountByName());
                     break;
                 case 4:
-                    this.getBankAccountById();
+                    ((BankAccount) getBankAccountById()).accountMenu();
                     break;
                 case 5:
                     return;

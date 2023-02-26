@@ -4,7 +4,6 @@ import Reader.Reader;
 
 import java.util.Scanner;
 
-
 public class BankAccount {
     final String owner;
     final private int id;
@@ -23,7 +22,8 @@ public class BankAccount {
     }
 
     public void setCredit(double credit) {
-        if (credit < 0) return;
+        if (credit < 0)
+            return;
         this.credit = credit;
     }
 
@@ -40,7 +40,8 @@ public class BankAccount {
     }
 
     public double withdrawal(double amount) {
-        if (amount < 0 || this.credit < amount) return 0;
+        if (amount < 0 || this.credit < amount)
+            return 0;
         this.addToCredit(-amount);
         return this.credit;
     }
@@ -48,7 +49,8 @@ public class BankAccount {
     public double withdrawal() {
         System.out.println("entrez le montant que vous voulez retirer \n");
         double amount = reader.getDouble();
-        if (amount < 0 || this.credit < amount) return 0;
+        if (amount < 0 || this.credit < amount)
+            return 0;
         this.addToCredit(-amount);
         return amount;
 
@@ -60,19 +62,22 @@ public class BankAccount {
     }
 
     public void deposit(double amount) {
-        if (amount < 0) return;
+        if (amount < 0)
+            return;
         this.addToCredit(amount);
     }
 
     public void deposit() {
         System.out.println("entrez le montant que vous voulez déposer \n");
         double amount = reader.getDouble();
-        if (amount < 0) return;
+        if (amount < 0)
+            return;
         this.addToCredit(amount);
     }
 
     public boolean sendMoney(BankAccount b1, double amount) {
-        if (this.credit < amount)return false;
+        if (this.credit < amount)
+            return false;
         this.withdrawal(amount);
         b1.deposit(amount);
         return true;
@@ -83,25 +88,27 @@ public class BankAccount {
         double amount = reader.getDouble();
         System.out.println("Entrez l’ID du destinataire \n");
         int receiverId = reader.getInteger();
-        if (this.credit < amount) return false;
+        if (this.credit < amount)
+            return false;
         this.withdrawal(amount);
         return true;
-        //        BankAccount b=getAccountByid(id);
-        //        it should bring user account from the accounts and desposit from it
-        //        receiver.deposit(amount);
+        // BankAccount b=getAccountByid(id);
+        // it should bring user account from the accounts and desposit from it
+        // receiver.deposit(amount);
     }
 
     public void accountMenu() {
         while (true) {
-            System.out.println("Veuillez choisir l’une des options: \n 1:verser 2:retirer  3:consulter 4:virer 5:quitter");
+            System.out.println(
+                    "Veuillez choisir l’une des options: \n 1:verser 2:retirer  3:consulter 4:virer 5:quitter");
             int choice = reader.getInteger();
-//        System.out.println(choice);
+            // System.out.println(choice);
             switch (choice) {
                 case 1:
                     this.deposit();
                     break;
                 case 2:
-                    System.out.println("vous avez" + this.withdrawal() + "$ ");
+                    System.out.println("vous avez " + this.withdrawal() + "$");
                     break;
                 case 3:
                     System.out.println(this.toString());
