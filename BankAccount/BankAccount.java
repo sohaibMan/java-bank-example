@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class BankAccount {
     final String owner;
     final private int id;
-    private double credit;
+    protected double credit;
     private static int accountCount = 0;
     Reader reader = new Reader();
 
@@ -56,7 +56,7 @@ public class BankAccount {
 
     }
 
-    private BankAccount addToCredit(double amount) {
+    protected BankAccount addToCredit(double amount) {
         this.credit += amount;
         return this;
     }
@@ -70,9 +70,7 @@ public class BankAccount {
     public void deposit() {
         System.out.println("entrez le montant que vous voulez déposer \n");
         double amount = reader.getDouble();
-        if (amount < 0)
-            return;
-        this.addToCredit(amount);
+        this.deposit(amount);
     }
 
     public boolean sendMoney(BankAccount b1, double amount) {

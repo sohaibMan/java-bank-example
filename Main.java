@@ -3,15 +3,15 @@ import BankAccount.BankAccount;
 
 public class Main {
         public static void main(String[] args) {
-                Bank bmce = new Bank("bmce");
-                bmce.createAccount("adam");
-                bmce.createAccount("adam");
-                bmce.createAccount("hamid");
-                bmce.createAccount("khalid");
+                // Bank bmce = new Bank("bmce");
+                // bmce.createAccount("adam");
+                // bmce.createAccount("adam");
+                // bmce.createAccount("hamid");
+                // bmce.createAccount("khalid");
                 // get a user account by his name
                 // BankAccount adamAccount = (BankAccount) bmce.getBankAccountByName("adam");
                 // BankAccount hamid = (BankAccount) bmce.getBankAccountById(3);
-                bmce.BankMenu();
+                // bmce.BankMenu();
                 // System.out.println(adamAccount.getId());
 
                 // adamJemmyAccount.accountMenu();
@@ -32,6 +32,13 @@ public class Main {
                 // bmce.BankMenu();
                 // compte menu
                 // ((BankAccount) bmce.getBankAccountByName("adam")).accountMenu();
+                Bank cih = new Bank("cih");
+                cih.createAccount();
+                cih.createAccount("adam");
+                cih.createAccount("khalid", "noraml");
+                cih.createAccount("amin", "courant");
+                cih.createAccount("ahmed", "epargne");
+                System.out.println(cih);
 
         }
 }

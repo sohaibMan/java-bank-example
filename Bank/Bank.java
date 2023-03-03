@@ -1,6 +1,8 @@
 package Bank;
 
 import BankAccount.BankAccount;
+import CompteCourant.CompteCourant;
+import CompteEpargne.CompteEpargne;
 import Reader.Reader;
 
 import java.util.ArrayList;
@@ -71,14 +73,44 @@ public class Bank {
         accounts.add(account);
     }
 
+    private void createCourantAccountHandler(String name) {
+        CompteCourant account = new CompteCourant(name);
+        accounts.add(account);
+    }
+
+    private void createEpargneAccountHandler(String name) {
+        CompteEpargne account = new CompteEpargne(name);
+        accounts.add(account);
+    }
+
+    public void createAccount(String name, String type) {
+        switch (type) {
+            case "normal":
+                this.createAccountHandler(name);
+                break;
+            case "epargne":
+                this.createEpargneAccountHandler(name);
+                break;
+            case "courant":
+                this.createCourantAccountHandler(name);
+                break;
+            default:
+                System.out.println("le type doit être soit normal ou Epargne courant");
+        }
+    }
+
     public void createAccount(String name) {
-        this.createAccountHandler(name);
+        System.out.println("Entrez le type");
+        String type = reader.getString();
+        this.createAccount(name, type);
     }
 
     public void createAccount() {
         System.out.println("Entrez le nom.");
         String name = reader.getString();
-        this.createAccountHandler(name);
+        System.out.println("Entrez le type");
+        String type = reader.getString();
+        this.createAccount(name, type);
     }
 
     private boolean sendMoneyHandler(BankAccount bs, BankAccount br, Double amount) {
