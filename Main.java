@@ -32,13 +32,18 @@ public class Main {
                 // bmce.BankMenu();
                 // compte menu
                 // ((BankAccount) bmce.getBankAccountByName("adam")).accountMenu();
-                Bank cih = new Bank("cih");
-                cih.createAccount();
-                cih.createAccount("adam");
-                cih.createAccount("khalid", "noraml");
-                cih.createAccount("amin", "courant");
-                cih.createAccount("ahmed", "epargne");
-                System.out.println(cih);
+                // Bank cih = new Bank("cih");
+                // cih.createAccount();
+                // cih.createAccount("adam");
+                // cih.createAccount("khalid", "noraml");
+                // cih.createAccount("amin", "courant");
+                // cih.createAccount("ahmed", "epargne");
+                // System.out.println(cih);
+                BankAccount b1 = new BankAccount("jonas");
+                BankAccount b2 = new BankAccount("khalid");
+                b1.deposit(10.222);
+                b2.deposit(10.22);
+                System.out.println(b1.compare(b2));
 
         }
 }

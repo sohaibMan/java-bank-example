@@ -4,7 +4,7 @@ import Reader.Reader;
 
 import java.util.Scanner;
 
-public class BankAccount {
+public class BankAccount implements iBankAccount {
     final String owner;
     final private int id;
     protected double credit;
@@ -133,5 +133,9 @@ public class BankAccount {
                 "id='" + id + '\'' + " " +
                 "credit='" + credit + '\'' + " $ " +
                 '}';
+    }
+
+    public boolean compare(Object obj) {
+        return ((BankAccount) obj).getCredit() == this.getCredit();
     }
 }
